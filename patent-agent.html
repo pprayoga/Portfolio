@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InventionID — Prayoga</title>
+  <meta name="description" content="An agentic pipeline that reads scientific papers and surfaces potentially patentable ideas." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <a class="back" href="index.html">&larr; Back to home</a>
+
+    <article class="article">
+      <p class="eyebrow">M.S. Capstone · Oregon State University · Team of 3</p>
+      <h1>InventionID — Automated Invention Extraction &amp; Prior-Art Analysis</h1>
+      <p class="lede">An agentic pipeline that reads technical documents and surfaces potentially patentable ideas — mimicking how a patent analyst works.</p>
+
+      <div class="tags">
+        <span class="tag">LLM agents</span>
+        <span class="tag">RAG</span>
+        <span class="tag">FAISS</span>
+        <span class="tag">AWS Bedrock</span>
+        <span class="tag">Python</span>
+      </div>
+
+      <div class="links"><a href="InventionID_Report.pdf">Report (PDF)</a> &middot; <a href="InventionID_Presentation.pdf">Presentation (PDF)</a></div>
+
+      <h2>Overview</h2>
+      <p>
+        Reviewing technical documents for patentable ideas is slow, expert work: read
+        the document, pull out the core contribution, phrase it as a patent claim,
+        then search prior art to judge novelty. InventionID automates that loop end
+        to end, turning a document into a set of candidate inventions with supporting
+        evidence and a first-pass novelty check. Built as a three-person M.S.
+        capstone at Oregon State University.
+      </p>
+
+      <h2>My role</h2>
+      <p>
+        I owned the prior-art search and patentability screening (§101
+        subject-matter eligibility) — the system's novelty-analysis core —
+        including the Google Patents and Google Scholar integration via the
+        SerpAPI and Semantic Scholar APIs. The overall pipeline architecture and
+        long-context inference (AWS Bedrock, prompt caching) were built with the
+        team.
+      </p>
+
+      <h2>How it works</h2>
+      <p>
+        The system runs a multi-stage pipeline: PDF parsing, section summarization,
+        embedding, patent-query generation, and prior-art retrieval. Long-context
+        LLM inference runs on AWS Bedrock, with prompt caching so the same document
+        can be queried repeatedly without paying full token cost each time.
+      </p>
+      <p>
+        For evidence and citations it uses retrieval-augmented generation (RAG) over
+        a FAISS vector index, pulling the specific snippets that support each claim.
+        Prior-art discovery reaches outside the paper through external APIs —
+        SerpAPI and Semantic Scholar — to query Google Patents and Google Scholar
+        for overlapping work. A small set of decision rules (document size, query
+        frequency, update rate) picks between prompt-caching and RAG on the fly so
+        the pipeline stays cost- and latency-aware.
+      </p>
+
+      <!-- SCREENSHOT: save e.g. patent-agent-1.png next to this file, then replace
+           the placeholder div below with:  <img src="patent-agent-1.png" alt="..."> -->
+      <figure>
+        <div class="shot-ph">Add a screenshot of a result</div>
+        <figcaption>[Caption: e.g. a detected candidate invention with its supporting snippets.]</figcaption>
+      </figure>
+
+      <h2>Results</h2>
+      <p>
+        [Add what it produced — e.g. how it did on a set of papers, an example
+        candidate invention it surfaced, or what the prior-art check caught. A
+        concrete example goes a long way here.]
+      </p>
+
+      <a class="back" href="index.html">&larr; Back to home</a>
+    </article>
+  </div>
+</body>
+</html>

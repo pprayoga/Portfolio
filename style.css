@@ -1,0 +1,228 @@
+/* =============================================================
+   Prayoga — portfolio styles (shared by all pages)
+   Theme lives in :root at the top. Change it once, every page updates.
+   ============================================================= */
+
+/* ============================================================
+   THINGS TO CHANGE FIRST
+   ============================================================ */
+:root {
+  /* ---- THEME: change these to restyle the whole page ---- */
+  --bg:       #f5efe4;   /* page background (warm paper) */
+  --text:     #241f17;   /* headings & strong text */
+  --muted:    #574f44;   /* body & secondary text */
+  --faint:    #928873;   /* dates, labels, meta */
+  --line:     #e4dccb;   /* hairline dividers */
+  --tag-bg:   #ece3d2;   /* tag background */
+  --ph-bg:    #eae0cd;   /* headshot placeholder bg */
+  --btn-text: #ffffff;   /* text on the solid button */
+  --accent:   #0F6E5E;   /* links, buttons, highlights (teal) */
+  --max-width: 720px;    /* width of the content column */
+}
+
+/* ============================================================
+   BASICS  (reset + page defaults)
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { line-height: 1.2; }
+
+/* small grey label used above each section */
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+.section-title { font-size: 1.5rem; margin-bottom: 24px; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { padding-top: 72px; }
+.hero h1 { font-size: 2.6rem; letter-spacing: -0.02em; margin-bottom: 10px; }
+.hero .tagline { font-size: 1.2rem; color: var(--muted); margin-bottom: 24px; }
+
+/* hero layout with headshot */
+.hero-inner { display: flex; align-items: center; gap: 36px; }
+.hero-text { flex: 1; }
+.headshot, .headshot-ph {
+  width: 150px; height: 150px; border-radius: 50%; flex-shrink: 0;
+}
+.headshot { object-fit: cover; }
+.headshot-ph {                 /* placeholder until you add a real photo */
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ph-bg); color: var(--accent);
+  font-size: 3rem; font-weight: 600;
+}
+
+/* buttons */
+.buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.btn {
+  padding: 10px 18px; border-radius: 8px; font-size: 0.95rem; font-weight: 500;
+}
+.btn-primary { background: var(--accent); color: var(--btn-text); }
+.btn-primary:hover { opacity: 0.9; text-decoration: none; }
+.btn-outline { border: 1px solid var(--line); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); text-decoration: none; }
+
+/* social links row */
+.socials { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.95rem; }
+
+/* ============================================================
+   WORK EXPERIENCE
+   ============================================================ */
+.job { margin-bottom: 36px; }
+.job .when { font-size: 0.85rem; color: var(--faint); }
+.job h3 { font-size: 1.15rem; margin: 2px 0; }
+.job .role { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+.job .story { margin-bottom: 10px; }
+.job ul { padding-left: 20px; color: var(--muted); font-size: 0.95rem; }
+.job li { margin-bottom: 4px; }
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.project { margin-bottom: 28px; }
+.project h3 { font-size: 1.1rem; margin-bottom: 4px; }
+.project p { color: var(--muted); margin-bottom: 8px; }
+.project .links { font-size: 0.9rem; }
+
+/* small tags */
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tag { font-size: 0.75rem; color: var(--muted); background: var(--tag-bg); padding: 3px 9px; border-radius: 6px; }
+
+/* result screenshot inside a project card */
+.shot {
+  display: block; width: 100%; margin-top: 12px;
+  border: 1px solid var(--line); border-radius: 10px;
+}
+.shot-ph {                       /* placeholder until you add a screenshot */
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; aspect-ratio: 16 / 9; margin-top: 12px;
+  border: 1px dashed var(--line); border-radius: 10px;
+  background: var(--tag-bg); color: var(--faint); font-size: 0.85rem;
+}
+
+/* ============================================================
+   PUBLICATIONS
+   ============================================================ */
+.pub { margin-bottom: 22px; }
+.pub .meta { font-size: 0.85rem; color: var(--faint); }
+.pub .title { font-weight: 600; }
+.pub .authors { color: var(--muted); font-size: 0.95rem; }
+.pub .authors b { color: var(--text); }   /* your name */
+
+/* ============================================================
+   SKILLS  (left label, right items, divided rows — like Simon's)
+   ============================================================ */
+.skill-group {
+  display: grid;
+  grid-template-columns: 160px 1fr;   /* label column | items column */
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.skill-group:last-child { border-bottom: 1px solid var(--line); }
+.skill-group .label {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.skill-group .items { color: var(--muted); font-size: 0.95rem; }
+
+/* compact coursework list (title + optional link only) */
+.mini-list { list-style: none; }
+.mini-list li {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 12px 0; border-top: 1px solid var(--line);
+}
+.mini-list li:last-child { border-bottom: 1px solid var(--line); }
+.mini-list .name { color: var(--text); }
+.mini-list .lk { font-size: 0.85rem; color: var(--faint); white-space: nowrap; }
+
+/* subheading + small date inside the Work section */
+.subhead {
+  font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--faint); margin: 34px 0 18px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+.pmeta { font-size: 0.82rem; color: var(--faint); margin-bottom: 6px; }
+
+/* ============================================================
+   EDUCATION  (its own section, below Skills)
+   ============================================================ */
+.edu { margin-bottom: 16px; }
+.edu .school { font-weight: 600; }
+.edu .degree { color: var(--muted); font-size: 0.95rem; }
+.edu .when { color: var(--faint); font-size: 0.85rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer { padding: 40px 0 64px; color: var(--muted); font-size: 0.9rem; }
+
+/* ============================================================
+   RESPONSIVE + MOTION
+   ============================================================ */
+@media (max-width: 600px) {
+  .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
+  .hero h1 { font-size: 2.1rem; }
+  section { padding: 44px 0; }
+  .skill-group { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* =============================================================
+   PROJECT DETAIL PAGES  (patent-agent.html, diary-agent.html, ...)
+   ============================================================= */
+.back {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 28px 0;
+}
+.article { padding-bottom: 40px; }
+.article h1 {
+  font-size: 2.1rem; letter-spacing: -0.02em; margin-bottom: 12px;
+}
+.article .lede { font-size: 1.15rem; color: var(--muted); margin-bottom: 14px; }
+.article h2 { font-size: 1.3rem; margin: 34px 0 12px; }
+.article p { margin-bottom: 14px; color: var(--muted); }
+.article .links { margin: 14px 0 8px; }
+
+/* figures / screenshots on detail pages */
+figure { margin: 22px 0; }
+figure img {
+  display: block; width: 100%;
+  border: 1px solid var(--line); border-radius: 10px;
+}
+figcaption { font-size: 0.85rem; color: var(--faint); margin-top: 8px; }
+
+/* make a project card title clickable without turning teal */
+.project h3 a { color: var(--text); }
+.project h3 a:hover { color: var(--accent); text-decoration: none; }

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prayoga — Field Engineer &rarr; AI</title>
+  <meta name="description" content="Field engineer turned AI builder. I learn how people actually work, then build agents and tools that do it automatically." />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Prayoga</h1>
+        <p class="tagline">Field engineer turned AI builder.</p>
+        <p style="max-width:52ch; color:var(--muted); margin-bottom:24px;">
+          I build AI agents that learn how people actually work — then do it automatically.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="/Prayoga_Resume.pdf">Résumé</a>
+          <a class="btn btn-outline" href="#work">View work</a>
+        </div>
+
+        <div class="socials">
+          <a href="mailto:prayoga23.yoga@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/prayoga-e-789868138">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- HEADSHOT: put your photo (e.g. headshot.jpg) next to index.html, then
+           replace the placeholder div below with:
+           <img class="headshot" src="headshot.jpg" alt="Prayoga" /> -->
+      <div class="headshot-ph" aria-hidden="true">P</div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT + EDUCATION ====================
+       Placed first after the hero — recruiters read this earliest.
+       The story lives here; Education sits under it. -->
+  <section id="about">
+    <div class="container">
+      <p class="eyebrow">Background</p>
+      <h2 class="section-title">About</h2>
+
+      <p style="color:var(--muted); margin-bottom:14px;">
+        I started out as a field service engineer for Solar Turbines, servicing
+        gas turbines in the oil and gas industry across the U.S. and Indonesia.
+        Most of what the job took, I learned in the field — a little training, a
+        lot of improvising, and often being the only engineer in front of the
+        customer with no one to fall back on. School never prepared me for that;
+        the job site did. Over time I went from figuring things out alone to
+        leading cross-functional teams through inspection, installation, and
+        commissioning.
+      </p>
+      <p style="color:var(--muted); margin-bottom:28px;">
+        What stayed with me from those years is a habit: watch how people actually
+        do the work, understand the process from the inside, and find where it
+        breaks. That's what pulled me toward AI. Now I build agents and tools that
+        do the same thing in software — I map how a task really gets done, then
+        build something that reproduces it and runs it on its own. I'm now
+        finishing an M.S. in Artificial Intelligence and looking for roles where
+        I can turn messy, real-world processes into reliable AI systems.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ==================== WHAT I BUILD ====================
+       Copy one .project block per project. -->
+  <section id="work">
+    <div class="container">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Projects</h2>
+
+      <p style="color:var(--muted); margin-bottom:28px; max-width:56ch;">
+        The same instinct from the field, in software: I study how people actually
+        do a task, map the process, and build agents that reproduce it.
+      </p>
+
+      <div class="project">
+        <h3><a href="patent-agent.html">InventionID — Automated Invention Extraction &amp; Prior-Art Analysis</a></h3>
+        <p class="pmeta">M.S. Capstone · Oregon State University · team of 3</p>
+        <div class="tags">
+          <span class="tag">Capstone</span>
+          <span class="tag">LLM agents</span>
+          <span class="tag">RAG</span>
+          <span class="tag">AWS Bedrock</span>
+        </div>
+        <p>
+          An agentic pipeline that reads scientific papers and finds potentially
+          patentable ideas — mimicking how a patent analyst works. It runs a
+          multi-stage flow (PDF parsing &rarr; summarization &rarr; embeddings &rarr;
+          patent-query generation &rarr; prior-art retrieval), uses RAG over FAISS
+          for cited evidence, and queries Google Patents and Scholar via external
+          APIs for automated novelty analysis. Prompt caching on long-context
+          inference keeps token cost and latency down.
+        </p>
+        <!-- Result screenshot: save e.g. patent-agent.png next to index.html, then
+             replace the div below with:
+             <img class="shot" src="patent-agent.png" alt="Patent Agent result" /> -->
+        <div class="shot-ph">Add a result screenshot</div>
+        <div class="links"><a href="patent-agent.html">Read more &rarr;</a> &middot; <a href="InventionID_Report.pdf">Report (PDF)</a> &middot; <a href="InventionID_Presentation.pdf">Presentation (PDF)</a></div>
+      </div>
+
+      <div class="project">
+        <h3><a href="diary-agent.html">Diary Agent</a></h3>
+        <div class="tags">
+          <span class="tag">LLM pipeline</span>
+          <span class="tag">MCP</span>
+          <span class="tag">AWS</span>
+          <span class="tag">SQLite / FTS5</span>
+        </div>
+        <p>
+          A personal knowledge system I built and run in production. It turns my
+          daily journal into meeting recaps and a deduplicated to-do list through a
+          multi-stage LLM pipeline, and exposes my diary and a tagged research-paper
+          library to an AI assistant via a Model Context Protocol (MCP) server.
+          Deployed on AWS behind Cloudflare, with a nightly cron recap.
+        </p>
+        <!-- Result screenshot: save e.g. diary-agent.png next to index.html, then
+             replace the div below with:
+             <img class="shot" src="diary-agent.png" alt="Diary Agent result" /> -->
+        <div class="shot-ph">Add a result screenshot</div>
+        <div class="links"><a href="diary-agent.html">Read more &rarr;</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WORK EXPERIENCE ====================
+       Copy one .job block per role. This is your centerpiece —
+       the .story line is where the honest short narrative goes. -->
+  <section id="experience">
+    <div class="container">
+      <p class="eyebrow">Experience</p>
+      <h2 class="section-title">Work Experience</h2>
+
+      <div class="job">
+        <div class="when">May 2018 – Jun 2023</div>
+        <h3>Solar Turbines Inc.</h3>
+        <div class="role">Field Service Representative &middot; San Diego, CA &amp; Jakarta, Indonesia</div>
+        <p class="story">
+          I serviced gas turbine equipment in the field — inspection, calibration,
+          maintenance, installation, and troubleshooting — often as the only
+          engineer on site in front of the customer. I learned the work on the job,
+          under real pressure, and grew into leading the teams around me.
+        </p>
+        <ul>
+          <li>Diagnosed and resolved complex technical issues to keep customer equipment running safely and reliably.</li>
+          <li>Led cross-functional teams of roughly six per department through installation, commissioning, and start-up.</li>
+          <li>Owned the customer relationship on site — technical guidance, recommendations, and clear communication with non-technical audiences.</li>
+          <li>Wrote detailed technical reports and shared operational best practices with customers and teams.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PUBLICATIONS ====================
+       Copy one .pub block per paper. Wrap your name in <b>. -->
+  <section id="publications">
+    <div class="container">
+      <p class="eyebrow">Research</p>
+      <h2 class="section-title">Publications</h2>
+
+      <div class="pub">
+        <div class="meta">VLDB 2026 &middot; Demonstration</div>
+        <div class="title">Minimal Data Cleaning for Model Training by MinPrep</div>
+        <div class="authors">Cheng Zhen, <b>Prayoga</b>, Nischal Aryal, Arash Termehchy, Alireza Aghasi</div>
+        <!-- Add the live demo link here when it's up: &middot; <a href="DEMO_URL">Demo</a> -->
+        <div style="font-size:0.9rem;"><a href="https://research.engr.oregonstate.edu/idea/sites/research.engr.oregonstate.edu.idea/files/vldb_demo_minprep.pdf">PDF</a></div>
+      </div>
+
+      <div class="pub">
+        <div class="meta">arXiv &middot; 2025</div>
+        <div class="title">Learning Accurate Models on Incomplete Data with Minimal Imputation</div>
+        <div class="authors">Cheng Zhen, Nischal Aryal, Arash Termehchy, <b>Prayoga</b>, Garrett Biwer, Sankalp Patil</div>
+        <div style="font-size:0.9rem;"><a href="https://arxiv.org/abs/2503.13921">arXiv</a></div>
+      </div>
+
+      <div class="pub">
+        <div class="meta">NeurIPS 2025 Workshop &middot; Reliable ML from Unreliable Data &middot; Poster</div>
+        <div class="title">Minimal Repairs for Learning Over Incomplete Data</div>
+        <div class="authors">Cheng Zhen, Nischal Aryal, Arash Termehchy, <b>Prayoga</b>, Garrett Biwer</div>
+        <div style="font-size:0.9rem;"><a href="https://neurips.cc/virtual/2025/loc/san-diego/125176">NeurIPS</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== OTHER PROJECTS ====================
+       Compact list — title only. Add a link when code/report is public:
+       change <span class="name">Title</span> to <a class="name" href="URL">Title</a> -->
+  <section id="coursework">
+    <div class="container">
+      <p class="eyebrow">More</p>
+      <h2 class="section-title">Other Projects</h2>
+      <ul class="mini-list">
+        <li><span class="name">Language Model Data Extraction — GPT-2 memorization study</span><span class="lk">no public code</span></li>
+        <li><span class="name">Data Poisoning via Influence Functions (TRACIn, CIFAR-10)</span><span class="lk">no public code</span></li>
+        <li><span class="name">Robustness Evaluation with AutoAttack (CIFAR-10)</span><span class="lk">no public code</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS ====================
+       The field + AI mix is a selling point — keep both. -->
+  <section id="skills">
+    <div class="container">
+      <p class="eyebrow">Toolbox</p>
+      <h2 class="section-title">Skills</h2>
+
+      <div class="skill-group">
+        <div class="label">AI &amp; ML</div>
+        <div class="items">LLM agents &middot; RAG &middot; embeddings &middot; prompt &amp; context engineering &middot; fine-tuning &middot; adversarial robustness</div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Data &amp; Tooling</div>
+        <div class="items">Python &middot; PyTorch &middot; scikit-learn &middot; pandas &middot; NumPy &middot; FAISS &middot; AWS Bedrock &middot; HPC / SLURM &middot; Git</div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Field Engineering</div>
+        <div class="items">Gas turbine service &amp; commissioning &middot; inspection &amp; calibration &middot; team leadership &middot; customer-facing delivery</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION ====================
+       Copy one .edu block per degree. -->
+  <section id="education">
+    <div class="container">
+      <p class="eyebrow">Background</p>
+      <h2 class="section-title">Education</h2>
+
+      <div class="edu">
+        <div class="school">Oregon State University</div>
+        <div class="degree">M.S. in Artificial Intelligence &middot; GPA 3.87</div>
+        <div class="when">Sept 2023 – Jun 2026 &middot; Corvallis, OR</div>
+      </div>
+
+      <div class="edu">
+        <div class="school">Texas A&amp;M University – Corpus Christi</div>
+        <div class="degree">B.S. in Mechanical Engineering &middot; GPA 3.89</div>
+        <div class="when">Jan 2014 – Dec 2017 &middot; Corpus Christi, TX</div>
+      </div>
+
+      <div class="edu">
+        <div class="school">Fundamentals of Engineering (FE)</div>
+        <div class="degree">Certification</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <footer id="contact">
+    <div class="container">
+      <p>If you think we'd work well together, reach me at
+        <a href="mailto:prayoga23.yoga@gmail.com">prayoga23.yoga@gmail.com</a>.</p>
+      <p style="margin-top:8px;">&copy; 2026 Prayoga &middot; Corvallis, OR</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diary Agent — Prayoga</title>
+  <meta name="description" content="A personal knowledge system that turns daily journal entries into recaps and to-dos, and answers questions over a paper library via MCP." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <a class="back" href="index.html">&larr; Back to home</a>
+
+    <article class="article">
+      <p class="eyebrow">Project · Independent</p>
+      <h1>Diary Agent</h1>
+      <p class="lede">A personal knowledge system I built and run in production — it turns my daily journal into structured recaps and a clean to-do list, and lets an AI assistant answer questions over my notes and paper library.</p>
+
+      <div class="tags">
+        <span class="tag">LLM pipeline</span>
+        <span class="tag">MCP</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">SQLite / FTS5</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Cloudflare</span>
+      </div>
+
+      <!-- Uncomment and add real URLs when ready:
+      <div class="links"><a href="DEMO_URL">Demo</a> &middot; <a href="GITHUB_URL">GitHub</a></div>
+      -->
+
+      <h2>Overview</h2>
+      <p>
+        Diary Agent is a system I use every day. Each night it reads my journal
+        entry and produces two things: a recap of any meetings, and a
+        deduplicated to-do list pulled from what I actually committed to. Separately,
+        it keeps a library of research papers I've read — auto-tagged and
+        searchable — and exposes the whole knowledge base to an AI assistant so I
+        can ask questions in plain language instead of digging through files.
+      </p>
+
+      <h2>How it works</h2>
+      <p>
+        The nightly job runs a two-stage LLM pipeline. Meeting detection and to-do
+        extraction run in parallel, then a second pass deduplicates the to-dos so
+        the same task never lands twice. The extraction prompt is a four-branch
+        decision tree that knows when it runs — about 1&nbsp;AM the next day — so
+        phrases like "tonight" resolve to the past and casual or aspirational
+        mentions don't turn into false to-dos.
+      </p>
+      <p>
+        Getting that reliable took real evaluation: I benchmarked candidate models
+        and prompts over repeated runs (N=3) to separate genuine improvements from
+        the model's run-to-run variance, and landed on a configuration scoring
+        23/25 on a hand-built test suite. That "measure it three times before you
+        trust it" discipline came straight from years of field commissioning.
+      </p>
+      <p>
+        The paper library adds automatic tagging, title-normalized deduplication,
+        and full-text search over SQLite (FTS5). All of it — diary and papers — is
+        served through a Model Context Protocol (MCP) server, so an AI client can
+        run natural-language queries like "papers on animal intelligence from June"
+        and get accurate, grounded retrieval. I validated the retrieval against a
+        seeded corpus, including deliberate over- and under-inclusion traps.
+      </p>
+
+      <h2>Running it in production</h2>
+      <p>
+        It's deployed on AWS EC2 with a FastAPI backend and a Streamlit UI, reached
+        through a Cloudflare Tunnel with Cloudflare Access handling auth, and driven
+        by a cron job for the nightly recap. I profiled memory to find the true
+        baseline, separated app load from dev-tooling overhead, and right-sized the
+        instance (t3.medium&nbsp;&rarr;&nbsp;t3.micro) — cutting monthly cost
+        roughly 4&times; without touching the workload.
+      </p>
+
+      <!-- SCREENSHOT: save e.g. diary-agent-1.png next to this file, then replace
+           the placeholder div below with:  <img src="diary-agent-1.png" alt="..."> -->
+      <figure>
+        <div class="shot-ph">Add a screenshot of a result</div>
+        <figcaption>[Caption: e.g. a nightly recap with extracted to-dos, or an MCP query answered.]</figcaption>
+      </figure>
+
+      <a class="back" href="index.html">&larr; Back to home</a>
+    </article>
+  </div>
+</body>
+</html>
