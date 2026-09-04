@@ -46,8 +46,20 @@
         long-context inference (AWS Bedrock, prompt caching) were built with the
         team.
       </p>
+      <figure>
+        <img src="invention-id-queries.png" alt="Tiered patent-query generation from the paper's terms" />
+        <figcaption>Turning the paper's wording into broad, tiered patent queries across Google Patents and Google Scholar.</figcaption>
+      </figure>
+      <figure>
+        <img src="invention-id-priorart.png" alt="Prior-art results triaged into potentially blocking, relevant, and related" />
+        <figcaption>Prior-art hits triaged for the reviewer into three buckets — potentially blocking, relevant, and related.</figcaption>
+      </figure>
 
       <h2>How it works</h2>
+      <figure>
+        <img src="invention-id-overview.png" alt="InventionID pipeline: paper in, review-ready prior art out" />
+        <figcaption>A paper goes in; review-ready prior art comes out — extract invention, generate queries, search prior art, compare and triage.</figcaption>
+      </figure>
       <p>
         The system runs a multi-stage pipeline: PDF parsing, section summarization,
         embedding, patent-query generation, and prior-art retrieval. Long-context
@@ -64,19 +76,11 @@
         the pipeline stays cost- and latency-aware.
       </p>
 
-      <!-- SCREENSHOT: save e.g. patent-agent-1.png next to this file, then replace
-           the placeholder div below with:  <img src="patent-agent-1.png" alt="..."> -->
-      <figure>
-        <div class="shot-ph">Add a screenshot of a result</div>
-        <figcaption>[Caption: e.g. a detected candidate invention with its supporting snippets.]</figcaption>
-      </figure>
-
       <h2>Results</h2>
-      <p>
-        [Add what it produced — e.g. how it did on a set of papers, an example
-        candidate invention it surfaced, or what the prior-art check caught. A
-        concrete example goes a long way here.]
-      </p>
+      <figure>
+        <img src="invention-id-output.png" alt="InventionID's structured output: an extracted candidate invention with key features and a patentability tag" />
+        <figcaption>The agent's actual output — a structured invention summary with key technical features, a patentability tag, and triaged prior-art counts.</figcaption>
+      </figure>
 
       <a class="back" href="index.html">&larr; Back to home</a>
     </article>
