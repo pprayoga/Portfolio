@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diary Agent — Prayoga</title>
-  <meta name="description" content="A personal knowledge system that turns daily journal entries into recaps and to-dos, and answers questions over a paper library via MCP." />
+  <meta name="description" content="A personal knowledge system that turns daily journal entries into recaps and to-dos, and answers questions over a paper library via an MCP server." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -15,7 +15,7 @@
     <article class="article">
       <p class="eyebrow">Project · Independent</p>
       <h1>Diary Agent</h1>
-      <p class="lede">A personal knowledge system I built and run in production — it turns my daily journal into structured recaps and a clean to-do list, and lets an AI assistant answer questions over my notes and paper library.</p>
+      <p class="lede">A personal knowledge system I built and run in production — it turns my daily journal into structured recaps and a to-do list, and lets an AI assistant answer questions over my notes and paper library.</p>
 
       <div class="tags">
         <span class="tag">LLM pipeline</span>
@@ -34,37 +34,62 @@
       <h2>Overview</h2>
       <p>
         Diary Agent is a system I use every day. Each night it reads my journal
-        entry and produces two things: a recap of any meetings, and a
-        deduplicated to-do list pulled from what I actually committed to. Separately,
-        it keeps a library of research papers I've read — auto-tagged and
-        searchable — and exposes the whole knowledge base to an AI assistant so I
-        can ask questions in plain language instead of digging through files.
+        entry and produces a recap of any meetings and a to-do list pulled from what
+        I actually committed to. It also keeps a library of research papers I've
+        read — auto-tagged and summarized — and exposes the whole knowledge base to
+        an AI assistant, so I can ask questions in plain language instead of digging
+        through files.
       </p>
+      <figure>
+        <img src="diary-app-layout.png" alt="The Diary Agent app: a daily journal entry on top and a structured paper log below" />
+        <figcaption>The app — a daily journal entry on top, a structured paper log below.</figcaption>
+      </figure>
 
       <h2>How it works</h2>
       <p>
-        The nightly job runs a two-stage LLM pipeline. Meeting detection and to-do
-        extraction run in parallel, then a second pass deduplicates the to-dos so
-        the same task never lands twice. The extraction prompt is a four-branch
-        decision tree that knows when it runs — about 1&nbsp;AM the next day — so
+        Capture is structured. When I log a paper, the system stores the PDF and
+        auto-generates a tiered set of tags (broad / medium / narrow) and a summary,
+        so the library stays searchable without manual bookkeeping.
+      </p>
+      <figure>
+        <img src="diary-paper-logging.png" alt="Logging a paper: auto-generated broad/medium/narrow tags and a summary" />
+        <figcaption>Logging a paper — auto-generated tiered tags and a structured summary alongside my own review notes.</figcaption>
+      </figure>
+      <p>
+        The nightly job runs a two-stage LLM pipeline: meeting detection and to-do
+        extraction, then a pass that cleans up duplicates. The extraction prompt is
+        a decision tree that knows when it runs — about 1&nbsp;AM the next day — so
         phrases like "tonight" resolve to the past and casual or aspirational
         mentions don't turn into false to-dos.
       </p>
       <p>
-        Getting that reliable took real evaluation: I benchmarked candidate models
-        and prompts over repeated runs (N=3) to separate genuine improvements from
-        the model's run-to-run variance, and landed on a configuration scoring
-        23/25 on a hand-built test suite. That "measure it three times before you
-        trust it" discipline came straight from years of field commissioning.
+        Everything — diary and papers — is served through a Model Context Protocol
+        (MCP) server, which exposes the knowledge base as tools an AI client can call
+        for full-text and tag search over SQLite (FTS5).
       </p>
+      <figure>
+        <img src="diary-mcp-tools.png" alt="The MCP server's tools: list_all_tags, search_papers_text, list_papers, get_paper, get_entry" />
+        <figcaption>The MCP server exposes the diary and paper library as callable tools — tag search, full-text search, and record lookup.</figcaption>
+      </figure>
+
+      <h2>Asking it anything</h2>
       <p>
-        The paper library adds automatic tagging, title-normalized deduplication,
-        and full-text search over SQLite (FTS5). All of it — diary and papers — is
-        served through a Model Context Protocol (MCP) server, so an AI client can
-        run natural-language queries like "papers on animal intelligence from June"
-        and get accurate, grounded retrieval. I validated the retrieval against a
-        seeded corpus, including deliberate over- and under-inclusion traps.
+        Because the knowledge base is exposed over MCP, I can query it from any
+        MCP-capable assistant. I've used it from both the Claude desktop app and
+        ChatGPT — same server, same data, either client.
       </p>
+      <figure>
+        <img src="diary-recap-claude.png" alt="The Claude desktop app recapping the day into morning, afternoon, and next steps" />
+        <figcaption>In the Claude desktop app — "so what did I do today?" returns a morning / afternoon / next-steps recap of the entry.</figcaption>
+      </figure>
+      <figure>
+        <img src="diary-query-chatgpt.png" alt="ChatGPT answering what have I read about LLM agents, listing logged papers and saved notes" />
+        <figcaption>The same knowledge base from ChatGPT — "what have I read about LLM agents?" returns the logged papers with my saved notes.</figcaption>
+      </figure>
+      <figure>
+        <img src="diary-crosscheck-claude.png" alt="The assistant cross-checking a cited paper against the stored library and flagging a mismatch" />
+        <figcaption>Grounded, not guessing — the assistant cross-checks a cited paper against the stored record and flags when they don't match.</figcaption>
+      </figure>
 
       <h2>Running it in production</h2>
       <p>
@@ -75,13 +100,6 @@
         instance (t3.medium&nbsp;&rarr;&nbsp;t3.micro) — cutting monthly cost
         roughly 4&times; without touching the workload.
       </p>
-
-      <!-- SCREENSHOT: save e.g. diary-agent-1.png next to this file, then replace
-           the placeholder div below with:  <img src="diary-agent-1.png" alt="..."> -->
-      <figure>
-        <div class="shot-ph">Add a screenshot of a result</div>
-        <figcaption>[Caption: e.g. a nightly recap with extracted to-dos, or an MCP query answered.]</figcaption>
-      </figure>
 
       <a class="back" href="index.html">&larr; Back to home</a>
     </article>
