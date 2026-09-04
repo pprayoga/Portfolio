@@ -47,17 +47,25 @@
         team.
       </p>
       <figure>
-        <img src="invention-id-queries.png" alt="Tiered patent-query generation from the paper's terms" />
-        <figcaption>Turning the paper's wording into broad, tiered patent queries across Google Patents and Google Scholar.</figcaption>
+        <img src="invention-id-patentability-rubric.png" alt="Patentability rubric: three facets scored 0-6 with a Section 101 guardrail" />
+        <figcaption>The patentability rubric behind the screening I owned — three facets scored 0–6, with a §101 eligibility guardrail.</figcaption>
       </figure>
       <figure>
-        <img src="invention-id-priorart.png" alt="Prior-art results triaged into potentially blocking, relevant, and related" />
-        <figcaption>Prior-art hits triaged for the reviewer into three buckets — potentially blocking, relevant, and related.</figcaption>
+        <img src="invention-id-search-query-calibration.png" alt="Search-query calibration turning the paper's terms into tiered queries" />
+        <figcaption>Search-query calibration — turning the paper's wording into tiered patent and scholar queries, each scored for specificity.</figcaption>
+      </figure>
+      <figure>
+        <img src="invention-id-prior-art-results.png" alt="Prior-art patent results triaged into potentially blocking and relevant" />
+        <figcaption>Prior-art hits triaged into potentially blocking, relevant, and related — each with a relevance score and the source patent.</figcaption>
+      </figure>
+      <figure>
+        <img src="invention-id-paper-results.png" alt="Academic-paper prior-art results triaged the same way, with a blocking hit from the literature" />
+        <figcaption>The academic-paper side of the same search — journal results triaged the same way, surfacing a blocking hit from the literature.</figcaption>
       </figure>
 
       <h2>How it works</h2>
       <figure>
-        <img src="invention-id-overview.png" alt="InventionID pipeline: paper in, review-ready prior art out" />
+        <img src="invention-id-pipeline-diagram.png" alt="InventionID pipeline: paper in, review-ready prior art out" />
         <figcaption>A paper goes in; review-ready prior art comes out — extract invention, generate queries, search prior art, compare and triage.</figcaption>
       </figure>
       <p>
@@ -77,9 +85,20 @@
       </p>
 
       <h2>Results</h2>
+      <p>
+        End to end, InventionID turns what used to be hours of manual prior-art
+        searching into a few minutes: a reviewer drops in a PDF and gets back a
+        structured invention summary, a first-pass patentability read, and prior-art
+        hits sorted by how much they matter. Every stage is visible and adjustable,
+        so the tool supports the reviewer's judgment rather than replacing it.
+      </p>
       <figure>
-        <img src="invention-id-output.png" alt="InventionID's structured output: an extracted candidate invention with key features and a patentability tag" />
-        <figcaption>The agent's actual output — a structured invention summary with key technical features, a patentability tag, and triaged prior-art counts.</figcaption>
+        <img src="invention-id-pipeline-running.png" alt="The seven-stage pipeline running on an uploaded PDF" />
+        <figcaption>The seven-stage pipeline running on an uploaded paper — every stage visible and auditable.</figcaption>
+      </figure>
+      <figure>
+        <img src="invention-id-analysis-output.png" alt="Finished analysis: a structured invention summary with key technical features" />
+        <figcaption>The finished analysis — a structured invention summary with key technical features and a first-pass patentability read.</figcaption>
       </figure>
 
       <a class="back" href="index.html">&larr; Back to home</a>
